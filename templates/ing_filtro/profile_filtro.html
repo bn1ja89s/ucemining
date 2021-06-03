@@ -1,0 +1,340 @@
+{% extends "company/layout.html" %}
+{% block content %}
+
+<!-- Page-header start -->
+<div class="page-header card">
+    <div class="row align-items-end">
+        <div class="col-lg-8">
+            <div class="page-header-title">
+                <i class="ti-ruler-pencil bg-c-blue"></i>
+                <div class="d-inline">
+                    <h4></h4>
+                    <span>
+                        Universidad Central del Ecuador</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="page-header-breadcrumb">
+                <div class="breadcrumb-title">
+                    <span class="f-left m-t-10 text-muted">
+                        <a href="{{url_for('home')}}"><i class="f-16 icofont icofont-home m-r-10"></i></a>
+                        <i class="breadcrumb-item f-16 m-r-10">/</i><a href="{{url_for(car)}}">{{car}}</a>
+                        <i class="breadcrumb-item f-16 m-r-10">/</i><a class="text-capitalize"
+                            href="">{{user.firstname}} {{user.lastname}}</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Card Perfil -->
+
+<div class="col-md-12">
+
+    <div class="card project-task">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header card">
+                    <div class="row align-items-end">
+                        <div class="col-lg-12">
+                            <div class="page-header-title">
+                                <a>
+                                    <img src="{{url_for('static', filename='img/profile/' + user.photo +'.jpg')}}"
+                                        title="{{user.username}}" class="rounded-circle"
+                                        style="width: 150px; height: 150px; background-repeat: no-repeat; background-position: 50%; background-size: 100% auto;">
+                                </a>
+                                <div class="card-block p-b-10">
+                                    <h5><mark>{{user.firstname}} {{user.lastname}}</mark></h5>
+                                    <h5><mark>Carrera:</mark> {{user.career}}</h5>
+                                    <h5><mark>Usuario:</mark> {{user.user_type}}</h5>
+                                    <hr>
+                                    <h5><mark>Edad:</mark> {{user.age}}</h5>
+                                    <h5><mark>Correo Registro:</mark> {{user.email}}</h5>
+                                    <h5><mark>Correo Alternativo:</mark> {{user.mail_sec}}</h5>
+                                    <h5><mark>Contacto: </mark> {{user.contact}}</h5>
+                                    <h5><mark>About:</mark> {{user.about_me}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="row m-0">
+                <div class="col-10 align-items-center p-0">
+                    <div class="bg-light">
+                        <a>
+                            <div class="navbar-brand p-2 m-0 text-dark  d-flex justify-content-start"
+                                style="background: #6c757d;font-size: 22px; width: 100%; border-radius:0%">
+                                <b>INSTRUCCIÓN ACADÉMICA</b>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-2 d-flex align-items-center justify-content-center bg-secondary p-0">
+                    <div class="new">
+                    </div>
+                </div>
+            </div>
+            <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                <div class="card-body bg-light pt-3 pb-0">
+                    {% for education in educations %}
+                    <div class="row">
+                        <div class="col-2 d-flex align-items-center justify-content-center pb-3">
+                            <div class="icon-box">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="box-element">
+                                <a class="">
+                                    <h4 class="text-uppercase text-dark">{{ education.name_institution }}</h4>
+                                </a>
+                                <h4>{{ education.degree }}</h4>
+                                Nivel de Instrucción: {{ education.level_education }} <br>
+                                {{ education.start_date.strftime('%d/%m/%Y') }} - {{
+                                education.end_date.strftime('%d/%m/%Y') }} <br>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="row m-0">
+                <div class="col-10 align-items-center p-0">
+                    <div class="bg-light">
+                        <a class="card-link">
+                            <div class="navbar-brand p-2 m-0 text-dark d-flex justify-content-start"
+                                style="background: #6c757d;font-size: 22px; width: 100%; border-radius:0%">
+                                <b>CURSOS Y CAPACITACIONES</b>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-2 d-flex align-items-center justify-content-center bg-secondary p-0">
+                    <div class="new">
+
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card-body bg-light pt-3 pb-0">
+                    {% for course in courses %}
+                    <div class="row">
+                        <div class="col-2 d-flex align-items-center justify-content-center pb-3">
+                            <div class="icon-box">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="box-element">
+                                <a class="">
+                                    <h4 class="text-uppercase text-dark">{{ course.description }}</h4>
+                                </a>
+                                <h4>Área de Capacitación: {{ course.area }}</h4>
+                                Horas de Capacitación: {{ course.time }} <br>
+                                {{ course.start_date.strftime('%d/%m/%Y') }} - {{ course.end_date.strftime('%d/%m/%Y')
+                                }}
+                                <br>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="row m-0">
+                <div class="col-10 align-items-center p-0">
+                    <div class="bg-light">
+                        <a class="card-link">
+                            <div class="navbar-brand p-2 m-0 text-dark  d-flex justify-content-start"
+                                style="background: #6c757d;font-size: 22px; width: 100%; border-radius:0%">
+                                <b>INVESTIGACIONES Y PUBLICACIONES</b>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-2 d-flex align-items-center justify-content-center bg-secondary p-0">
+                    <div class="new">
+                        <a class=""></a>
+                    </div>
+                </div>
+            </div>
+            <div id="collapseTree" class="collapse show" data-parent="#accordion">
+                <div class="card-body bg-light pt-3 pb-0">
+                    {% for publication in publications %}
+                    <div class="row">
+                        <div class="col-2 d-flex align-items-center justify-content-center pb-3">
+                            <div class="icon-box">
+                                <i class="fas fa-book"></i>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="box-element">
+                                <a class="">
+                                    <h4 class="text-uppercase text-dark">{{ publication.title }}</h4>
+                                </a>
+                                Fecha de publicación: {{ publication.pub_date.strftime('%d/%m/%Y') }}<br>
+                                DOI: <a class="DOI">{{ publication.link }}</a> <br>
+                                <h4>Descipción: </h4>{{ publication.description }} <br>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="row m-0">
+                <div class="col-10 align-items-center p-0">
+                    <div class="bg-light">
+                        <a class="card-link">
+                            <div class="navbar-brand p-2 m-0 text-dark  d-flex justify-content-start"
+                                style="background: #6c757d;font-size: 22px; width: 100%; border-radius:0%">
+                                <b>EXPERIENCIAS DE VOLUNTARIADO Y LIDERAZGO</b>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-2 d-flex align-items-center justify-content-center bg-secondary p-0">
+                    <div class="new">
+                        <a class=""></a>
+                    </div>
+                </div>
+            </div>
+            <div id="collapseFour" class="collapse show" data-parent="#accordion">
+                <div class="card-body bg-light pt-3 pb-0">
+                    {% for volunteering in volunteerings %}
+                    <div class="row">
+                        <div class="col-2 d-flex align-items-center justify-content-center pb-3">
+                            <div class="icon-box">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="box-element">
+                                <a class="">
+                                    <h4 class="text-uppercase text-dark">{{ volunteering.organization }}</h4>
+                                </a>
+                                <h4>{{ volunteering.possition }}</h4>
+                                {{ volunteering.start_date.strftime('%d/%m/%Y') }} - {{
+                                volunteering.end_date.strftime('%d/%m/%Y') }} <br>
+                                <h4>Actividades Desempeñadas: </h4>{{ volunteering.activities }} <br>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="row m-0">
+                <div class="col-10 align-items-center p-0">
+                    <div class="bg-light">
+                        <a class="card-link">
+                            <div class="navbar-brand p-2 m-0 text-dark  d-flex justify-content-start"
+                                style="background: #6c757d;font-size: 22px; width: 100%; border-radius:0%">
+                                <b>EXPERIENCIAS LABORALES</b>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-2 d-flex align-items-center justify-content-center bg-secondary p-0">
+                    <div class="new">
+                        <a class=""></a>
+                    </div>
+                </div>
+            </div>
+            <div id="collapseFive" class="collapse show" data-parent="#accordion">
+                <div class="card-body bg-light pt-3 pb-0">
+                    {% for experience in experiences %}
+                    <div class="row">
+                        <div class="col-2 d-flex align-items-center justify-content-center pb-3">
+                            <div class="icon-box">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="box-element">
+                                <a class="">
+                                    <h4 class="text-uppercase text-dark">{{ experience.company }}</h4>
+                                </a>
+                                <h4>{{ experience.possition }}</h4>
+                                Área de servicio: {{ experience.area_e }} <br>
+                                {{ experience.start_date_e.strftime('%d/%m/%Y') }} - {{
+                                experience.end_date_e.strftime('%d/%m/%Y') }} <br>
+                                Tiempo de Servicio: {{ experience.time_e }} años <br>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="row m-0">
+                <div class="col-10 align-items-center p-0">
+                    <div class="bg-light">
+                        <a class="card-link">
+                            <div class="navbar-brand p-2 m-0 text-dark  d-flex justify-content-start"
+                                style="background: #6c757d;font-size: 22px; width: 100%; border-radius:0%">
+                                <b>DESTREZA EN IDIOMAS</b>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-2 d-flex align-items-center justify-content-center bg-secondary p-0">
+                    <div class="new">
+                        <a class=""></a>
+                    </div>
+                </div>
+            </div>
+            <div id="collapseSex" class="collapse show" data-parent="#accordion">
+                <div class="card-body bg-light pt-3 pb-0">
+                    {% for language in languages %}
+                    <div class="row">
+                        <div class="col-2 d-flex align-items-center justify-content-center pb-3">
+                            <div class="icon-box">
+                                <i class="fas fa-language"></i>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="box-element">
+                                <a class="">
+                                    <h4 class="text-uppercase text-dark">{{ language.language }}</h4>
+                                </a>
+                                <h4>{{ language.level }}</h4>
+                                Institución de Instrucción: {{ language.study_center }} <br>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <a class="btn btn-primary" href="javascript:window.print()"><i class="ti-printer"></i>Imprimir</a>
+    
+
+</div>
+
+
+</div>
+</div>
+<!-- End Card Perfil -->
+
+{% endblock %}
