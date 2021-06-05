@@ -10,6 +10,7 @@ import threading
 import os
 from werkzeug.utils import secure_filename
 from datetime import timedelta
+import json
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
@@ -216,17 +217,15 @@ def inicio(username):
     contarAmb = (contarAmb0, contarAmb1, contarAmb2)
     return render_template('company/home.html', contarMin = contarMin, contarGeo = contarGeo, contarPetro = contarPetro, contarAmb = contarAmb , user = user)     
 
-# @app.route('/proyecto', methods = ['GET', 'POST'])
-# def proyecto():
-#     username = session['username']
-#     user = database.session.query(empresa).filter_by(empresa = username).first()
-#     return render_template('company/proyecto.html', user = user)
-
-# @app.route('/proyecto/<proyecto>', methods = ['GET', 'POST'])
-# def prodata(proyecto):
-#     username = session['username']
-#     user = database.session.query(empresa).filter_by(empresa = username).first()
-#     return render_template('company/group.html', user = user)
+# @app.context_processor
+# def contar_user():
+#     if not current_user.is_authenticated:
+#         return {'num_articulos': 0}
+#     if request.cookies.get(str(current_user.id)) is None:
+#         return {'num_articulos': 0}
+#     else:
+#         datos = json.loads(request.cookies.get(str(current_user.id)))
+#         return {'num_articulos': len(datos)}
 
 @app.route('/logout')
 def logout():

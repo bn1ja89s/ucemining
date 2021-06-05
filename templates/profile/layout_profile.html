@@ -82,7 +82,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal1">Subir Imagen</h5>
+                    <h5 class="modal-title" id="modal1">Subir Imagen (Solo imagenes.jpg)</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{url_for('perfil', username = username)}}" method="POST" enctype="multipart/form-data">
@@ -92,7 +92,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"> Subir Archivo </label>
                                 <div class="col-sm-10">
-                                    <input type="file" name="archivo" accept=".jpeg">
+                                    <input type="file" name="archivo" accept=".jpg">
                                 </div>
                             </div>
                             <div class="modal-footer">

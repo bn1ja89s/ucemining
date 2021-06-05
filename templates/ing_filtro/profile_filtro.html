@@ -45,17 +45,19 @@
                                     <img src="{{url_for('static', filename='img/profile/' + user.photo +'.jpg')}}"
                                         title="{{user.username}}" class="rounded-circle"
                                         style="width: 150px; height: 150px; background-repeat: no-repeat; background-position: 50%; background-size: 100% auto;">
+
+
                                 </a>
                                 <div class="card-block p-b-10">
-                                    <h5><mark>{{user.firstname}} {{user.lastname}}</mark></h5>
-                                    <h5><mark>Carrera:</mark> {{user.career}}</h5>
-                                    <h5><mark>Usuario:</mark> {{user.user_type}}</h5>
+                                    <h5><strong>{{user.firstname}} {{user.lastname}}</strong></h5>
+                                    <h5><strong>Carrera:</strong> {{user.career}}</h5>
+                                    <h5><strong>Usuario:</strong> {{user.user_type}}</h5>
                                     <hr>
-                                    <h5><mark>Edad:</mark> {{user.age}}</h5>
-                                    <h5><mark>Correo Registro:</mark> {{user.email}}</h5>
-                                    <h5><mark>Correo Alternativo:</mark> {{user.mail_sec}}</h5>
-                                    <h5><mark>Contacto: </mark> {{user.contact}}</h5>
-                                    <h5><mark>About:</mark> {{user.about_me}}</h5>
+                                    <h5><strong>Edad:</strong> {{user.age}}</h5>
+                                    <h5><strong>Correo Registro:</strong> {{user.email}}</h5>
+                                    <h5><strong>Correo Alternativo:</strong> {{user.mail_sec}}</h5>
+                                    <h5><strong>Contacto: </strong> {{user.contact}}</h5>
+                                    <h5><strong>About:</strong> {{user.about_me}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -96,8 +98,13 @@
                                 </a>
                                 <h4>{{ education.degree }}</h4>
                                 Nivel de Instrucción: {{ education.level_education }} <br>
+                                {% if (education.end_date == None or education.end_date == "") %}
+                                {{ education.start_date.strftime('%d/%m/%Y') }} - Sin Finalizar <br>
+                                {% else %}
                                 {{ education.start_date.strftime('%d/%m/%Y') }} - {{
-                                education.end_date.strftime('%d/%m/%Y') }} <br>
+                                education.end_date.strftime('%d/%m/%Y')
+                                }} <br>
+                                {% endif %}
                                 <hr>
                             </div>
                         </div>
@@ -327,13 +334,11 @@
         </div>
 
     </div>
+
+</div>
+<div class="div">
     <a class="btn btn-primary" href="javascript:window.print()"><i class="ti-printer"></i>Imprimir</a>
-    
-
-</div>
-
-
-</div>
+    <a class="btn btn-secondary">Hoja de Vida</a>
 </div>
 <!-- End Card Perfil -->
 

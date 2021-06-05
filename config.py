@@ -1,4 +1,3 @@
-
 class Config(object):
     SECRET_KEY = 'secret_key_ucemining'
 
@@ -11,5 +10,5 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = ("mysql+pymysql://ufn5gmzeuwrjy7pt:JMorwFcnW4fYwjp5PLQx@bo45ugralxbsrqx5kcxg-mysql.services.clever-cloud.com:3306/bo45ugralxbsrqx5kcxg")
+    SQLALCHEMY_DATABASE_URI = ("mysql+pymysql://bn1ja:0912@localhost:3306/ucemining")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
